@@ -41,4 +41,3 @@ async def allocate_donation_funds(session: AsyncSession) -> None:
                 fully_invest(donation)
 
     await session.commit()
-
