@@ -1,3 +1,5 @@
+from datetime import datetime
+
 # services.google_api
 FORMAT = "%Y/%m/%d %H:%M:%S"
 DRIVE_VERSION = 'v3'
@@ -34,3 +36,28 @@ ERR_HAS_INVEST = 'В проект были внесены средства, не
 ERR_PROJECT_CLOSED = 'Закрытый проект нельзя редактировать!'
 ERR_FULL_AMOUNT = 'Нельзя установить требуемую cумму меньше уже вложенной'
 ERR_DONT_DELETE_USER = 'Удаление пользователей запрещено!'
+
+NOW_DATE_TIME = datetime.now().strftime(FORMAT)
+SPREADSHEET_BODY = {
+    'properties': {
+        'title': f'Отчет на {NOW_DATE_TIME}',
+        'locale': 'ru_RU'},
+    'sheets': [
+        {
+            'properties': {
+                'sheetType': 'GRID',
+                'sheetId': SHEET_ID,
+                'title': 'Рейтинг проектов по скорости сбора средств',
+                'gridProperties': {
+                    'rowCount': ROW_COUNT,
+                    'columnCount': COLUMN_COUNT
+                }
+            }
+        }
+    ]
+}
+HEADER_TABLE_VALUES = [
+    ['Отчет от', NOW_DATE_TIME],
+    ['Топ проектов по скорости закрытия'],
+    ['Название проекта', 'Время сбора', 'Описание']
+]

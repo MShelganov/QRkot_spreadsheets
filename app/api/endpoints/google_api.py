@@ -11,6 +11,7 @@ from app.services import constants as const
 from app.services.google_api import (set_user_permissions, spreadsheets_create,
                                      spreadsheets_update_value)
 
+SPREADSHEETS_URI = 'https://docs.google.com/spreadsheets/d/{id}'
 router = APIRouter()
 
 
@@ -37,4 +38,4 @@ async def get_report(
         wrapper_services
     )
 
-    return {'url': f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}'}
+    return {'url': SPREADSHEETS_URI.format(id=spreadsheet_id)}
